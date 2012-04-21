@@ -1,14 +1,5 @@
-require 'json'
-def clean(s) s.downcase.gsub("/","").gsub("(","").gsub(")","").gsub(":","").gsub(".","").gsub(",","").gsub(";","").gsub("?"," ?").gsub("!"," !").gsub("-"," -") end
-def search_index(i, query)
-    i.map{|id,review|
-        id if query.split(" ").inject(true){|a,q| a&&review.any?{|w| w.include?(q)}}
-    }.compact
-end
-r = {}.tap{|r| File.new(ARGV[0]).readlines.each{|x| y = x.split(" : "); r[y[0]] = clean(y[1..-1].join(" ")).split(" ");}}
-while true
-    print '>'
-    $stdout.flush
-    query = $stdin.gets
-    print JSON.generate(search_index(r, query))
-end
+require'json'
+def clean(s)s.downcase.gsub(/[\/\(\):\.,;]/,"").gsub("[\-\?!]"," ")end
+def s(i,qu)i.map{|j,r|p=qu.split(" ");j if p.inject(true){|a,q|a&&r.any?{|w|w.include?(q)}}}.compact;end
+i={}.tap{|r|File.new($*[0]).readlines.each{|x|y=x.split(" : ");r[y[0]]=clean(y[1..-1].join(" ")).split(" ")}}
+while true;print'>';STDOUT.flush;q=STDIN.gets;print JSON.generate(s(i,q));end
