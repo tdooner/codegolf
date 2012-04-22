@@ -1,0 +1,12 @@
+[submodule "icd3"]
+	path = icd3
+	url = git://github.com/icd3/codegolf.git
+[submodule "bis12"]
+	path = bis12
+	url = git://github.com/bis12/codegolf.git
+[submodule "agn31"]
+	path = agn31
+	url = git://github.com/Aaronneyer/CodeGolf.git
+[submodule "test_harness"]
+	path = test_harness
+	url = git://github.com/hacsoc/codegolf.git
